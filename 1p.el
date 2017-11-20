@@ -61,19 +61,20 @@
 
 (defun myfl (l)
     (cond ( (null l) nil)
-          ( (null (cdr l)) (list (Flatten  (carl) )))
+          ( (null (cdr l)) (list (Flatten  (car l) )))
           ( t (cons (Flatten (car l)) (myfl (cdr l))  ))
           ))
 (defun fun3311 (l) (fun33 l nil nil))
 (defun fun33(l res1 res2)
     (cond ( (null l) res2)
-          ( (null (cddr l))  (fun33 nil (fun22 (car l) (cadr l) res1)  (cons (fun22 (car l) (cadr l) res1) res2 )))))
+          ( (null (cddr l))  (fun33 nil (fun22 (car l) (cadr l) res1)  (cons (fun22 (car l) (cadr l) res1) res2 )))
+          ))
 
 (defun find (l res)
     (cond ( (null l) res)
           ( (null (cddr l)) (find1 (unlist2 (list (caaar l) (caadar l)) (cadr l) )))
-          ( t (mapcar 'find1 (unlist2 (list (caaar l) (caadar l)) (cdr l))))))
-
+          ( t (mapcar 'find1 (unlist2 (list (caaar l) (caadar l)) (cdr l))))
+          ))
 
 (defun delete_for_v (l)
     (cond ( (null l) nil)
@@ -145,8 +146,15 @@
 (mapcar 'car '(( (1 2) (4 5)) nil  ((3 7) (9 4)) (( 44 5) ( 55 6)) ) )
 (del_nil (mapcar 'car (mapcar 'delete_for_&  (unlist 'list (newf1 '((x y) (x y z))) (newf1 '((0 0) (1 1 0)))))))
 (mapcar 'cdr (mapcar 'delete_for_&  (unlist 'list (newf1 '((x y) (x y z))) (newf1 '((0 0) (1 1 0))))))
-(mapcar 'delete_for_&  (unlist 'list (newf1 '((x y) (x y z))) (newf1 '((0 0) (1 1 0)))))
-
+(unlist 'list (newf1 '((x y) (x y z))) (newf1 '((0 0) (1 1 0))))
+(cadar ' ( ((w e) (0 1)) ( (b r) (0 1)) ))
+(unlist4 (unlist 'list (newf1 '((x y) (x y z))) (newf1 '((0 0) (1 1 0)))))
+(defun unlist4 (l) (unlist3 l nil))
+(defun unlist3 (l res)
+    (cond ( (null l) res)
+          ( (null (cdr l)) (cons (unlist 'list (caar l) (cadar l)) res))
+          ( t (unlist3 (cdr l) (cons (unlist 'list (caar l) (cadar l)) res))))
+    )
 (eq_all '(1 0 1 1 ))
 
 (cddr '((x y) (e t) (m n)))
