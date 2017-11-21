@@ -155,6 +155,14 @@
           ( (null (cdr l)) (cons (unlist 'list (caar l) (cadar l)) res))
           ( t (unlist3 (cdr l) (cons (unlist 'list (caar l) (cadar l)) res))))
     )
+(defun intersect1 (l1 l2) (intersect l1 l2 nil))
+(defun intersect ( x y res);;разность множеств
+    (cond ( (null x) res)
+          ( (null y) res)
+          ( (null (cdr x)) (cond ((not (member (car x) y))  (cons (car x) res))
+                                 ))
+          ( t (intersect (cdr x) y (cons (car x) res)) )
+          ))
 (eq_all '(1 0 1 1 ))
 
 (cddr '((x y) (e t) (m n)))
